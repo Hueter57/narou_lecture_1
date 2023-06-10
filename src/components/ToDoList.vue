@@ -15,6 +15,7 @@
     const addTodo = () => {
         if (newTodoName.value != ''){
             todos.value.push({ name: newTodoName.value, end: false })
+            newTodoName.value = ''
         }
     }
     const endTodo = (index: number) => {
@@ -34,26 +35,22 @@
     <ul>
         <li>
             <div>未完了</div>
-            <ul>
-                <div v-for="(todo, index) in todos" :key="todo.name">
-                    <li v-if="todo.end == false">
-                    <div>{{ todo.name }}</div>
-                    <button @click="endTodo(index)">完了</button>
-                    </li>
+            <div v-for="(todo, index) in todos" :key="todo.name">
+                <div v-if="todo.end == false">
+                <div style="display:inline">{{ todo.name }}</div>
+                <button @click="endTodo(index)">完了</button>
                 </div>
-            </ul>
+            </div>
         </li>
         <li>
-            <div>完了</div>
-            <ul>
-                <div v-for="(todo, index) in todos" :key="todo.name">
-                    <li v-if="todo.end">
-                    <div>{{ todo.name }}</div>
-                    <button @click="notEndTodo(index)">未完了</button>
-                    <button @click="eraceTodo(index)">削除</button>
-                    </li>
+            <div>完了☑</div>
+            <div v-for="(todo, index) in todos" :key="todo.name">
+                <div v-if="todo.end">
+                <div style="display:inline">{{ todo.name }}</div>
+                <button @click=notEndTodo(index)>未完了</button>
+                <button @click="eraceTodo(index)">削除</button>
                 </div>
-            </ul>
+            </div>
         </li>
     </ul>
     <div>
@@ -70,4 +67,8 @@
   </div>
 </template>
 
-<style></style>
+<style>
+.right{
+    text-align: right
+}
+</style>
