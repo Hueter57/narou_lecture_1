@@ -37,8 +37,8 @@
             <div>未完了</div>
             <div v-for="(todo, index) in todos" :key="todo.name">
                 <div v-if="todo.end == false">
-                <div style="display:inline">{{ todo.name }}</div>
                 <button @click="endTodo(index)">完了</button>
+                <div style="display:inline">: {{ todo.name }}</div>
                 </div>
             </div>
         </li>
@@ -46,9 +46,9 @@
             <div>完了☑</div>
             <div v-for="(todo, index) in todos" :key="todo.name">
                 <div v-if="todo.end">
-                <div style="display:inline">{{ todo.name }}</div>
-                <button @click=notEndTodo(index)>未完了</button>
-                <button @click="eraceTodo(index)">削除</button>
+                <button @click="notEndTodo(index)">未完了</button>
+                <div style="display:inline"> : {{ todo.name }}</div>
+                <div style="display:inline" class="right"><button @click="eraceTodo(index)" class="right">削除</button></div>
                 </div>
             </div>
         </li>
@@ -69,6 +69,6 @@
 
 <style>
 .right{
-    text-align: right
+    text-align: right;
 }
 </style>
